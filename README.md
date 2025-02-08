@@ -33,5 +33,4 @@ rails server
 - [ ] Deploy to production
 
 ---
-✉ **Contact**: [Telegram](https://t.me/username) | [LinkedIn](https://linkedin.com/in/username_profile)
 
