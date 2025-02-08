@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   get "categories/index"
   get "categories/show"
   get "posts/index"
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "home#index"
 end
+
