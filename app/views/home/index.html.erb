@@ -1,2 +1,61 @@
-<h1>Hello World!</h1>
-<p>Ruby on Rails ftw!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">My Portfolio</h1>
+        <ul class="nav-links">
+          <li>Home</li>
+          <li>Projects</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="intro">
+      <div class="container">
+        <h2>Welcome to My Portfolio</h2>
+        <p>Exploring Cybersecurity, Penetration Testing, and Software Development.</p>
+        <button class="btn">View My Work</button>
+      </div>
+    </section>
+
+    <section class="featured-projects">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Project Title</h3>
+            <p>Short description of the project.</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <%= Time.now.year %> My Portfolio. All rights reserved.</p>
+      <ul class="social-links">
+        <li>GitHub</li>
+        <li>LinkedIn</li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
