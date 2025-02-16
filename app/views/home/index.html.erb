@@ -4,58 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
 </head>
 <body>
-
   <!-- Header -->
-  <header>
+  <header class="header">
     <nav class="navbar">
       <div class="container">
-        <h1 class="logo">My Portfolio</h1>
+        <div class="logo">
+          <h1>My Portfolio</h1>
+        </div>
         <ul class="nav-links">
-          <li>Home</li>
-          <li>Projects</li>
+          <li><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+          <li><%= link_to 'Projects', projects_path, class: 'nav-link' %></li>
+          <li><%= link_to 'Blog', blog_path, class: 'nav-link' %></li>
+          <li><%= link_to 'About', about_path, class: 'nav-link' %></li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <section class="intro">
-      <div class="container">
-        <h2>Welcome to My Portfolio</h2>
-        <p>Exploring Cybersecurity, Penetration Testing, and Software Development.</p>
-        <button class="btn">View My Work</button>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="hero-title">Welcome to My Portfolio</h2>
+        <p class="hero-subtitle">Exploring Cybersecurity, Penetration Testing, and Software Development</p>
+        <%= link_to 'View My Work', projects_path, class: 'btn btn-primary' %>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="featured-projects">
-      <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
+  <!-- Featured Projects -->
+  <section class="projects-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <% @featured_projects.each do |project| %>
           <div class="project-card">
-            <h3>Project Title</h3>
-            <p>Short description of the project.</p>
-            <button class="btn">Learn More</button>
+            <div class="project-image">
+              <%= image_tag project.image if project.image.attached? %>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title"><%= project.title %></h3>
+              <p class="project-description"><%= project.description %></p>
+              <div class="project-tags">
+                <% project.tags.each do |tag| %>
+                  <span class="tag"><%= tag %></span>
+                <% end %>
+              </div>
+              <%= link_to 'Learn More', project_path(project), class: 'btn btn-secondary' %>
+            </div>
           </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
+  <section class="blog-section">
+    <div class="container">
+      <h2 class="section-title">Latest from the Blog</h2>
+      <div class="blog-grid">
+        <% @latest_posts.each do |post| %>
+          <div class="blog-card">
+            <div class="blog-image">
+              <%= image_tag post.image if post.image.attached? %>
+            </div>
+            <div class="blog-content">
+              <span class="blog-date"><%= post.created_at.strftime("%B %d, %Y") %></span>
+              <h3 class="blog-title"><%= post.title %></h3>
+              <p class="blog-excerpt"><%= truncate(post.content, length: 150) %></p>
+              <%= link_to 'Read More', blog_post_path(post), class: 'btn btn-text' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about-preview">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2 class="section-title">About Me</h2>
+          <p class="about-text">
+            Brief introduction about yourself and your expertise in cybersecurity and software development.
+          </p>
+          <%= link_to 'Learn More About Me', about_path, class: 'btn btn-secondary' %>
+        </div>
+        <div class="about-image">
+          <%= image_tag 'profile.jpg', class: 'profile-image' if @profile_image.attached? %>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="footer">
     <div class="container">
-      <p>&copy; <%= Time.now.year %> My Portfolio. All rights reserved.</p>
-      <ul class="social-links">
-        <li>GitHub</li>
-        <li>LinkedIn</li>
-      </ul>
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>&copy; <%= Time.current.year %> My Portfolio. All rights reserved.</p>
+        </div>
+        <div class="social-links">
+          <%= link_to 'GitHub', 'https://github.com/yourusername', target: '_blank', class: 'social-link' %>
+          <%= link_to 'LinkedIn', 'https://linkedin.com/in/yourusername', target: '_blank', class: 'social-link' %>
+          <%= link_to 'Twitter', 'https://twitter.com/yourusername', target: '_blank', class: 'social-link' %>
+        </div>
+      </div>
     </div>
   </footer>
-
 </body>
 </html>
