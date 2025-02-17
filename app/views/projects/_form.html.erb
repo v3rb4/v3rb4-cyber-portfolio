@@ -1,0 +1,54 @@
+<%= form_with(model: @project, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :title, "Project Title" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :technologies, "Technologies Used (comma-separated)" %>
+    <%= form.text_field :technologies, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image, "Project Image" %>
+    <%= form.file_field :image, class: "form-control",
+        accept: 'image/png,image/jpeg,image/jpg',
+        data: { 
+          max_file_size: 5.megabytes,
+          preview: 'image-preview'
+        } %>
+    
+    <% if @project.image.attached? %>
+      <div class="mt-2">
+        <p>Current image:</p>
+        <%= image_tag @project.image.variant(:medium), class: "img-thumbnail", id: "image-preview" %>
+      </div>
+    <% else %>
+      <div class="mt-2">
+        <img id="image-preview" src="#" alt="Preview" style="display: none; max-width: 300px;" class="img-thumbnail">
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :github_url, "GitHub URL" %>
+    <%= form.url_field :github_url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :live_url, "Live Project URL" %>
+    <%= form.url_field :live_url, class: "form-control" %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :featured, class: "form-check-input" %>
+    <%= form.label :featured, "Feature this project", class: "form-check-label" %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
