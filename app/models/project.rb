@@ -1,24 +1,13 @@
 class Project < ApplicationRecord
-  has_one_attached :image do |attachable|
-    attachable.variant :thumb, resize_to_fill: [100, 100]
-    attachable.variant :medium, resize_to_fill: [300, 300]
-    attachable.variant :large, resize_to_fill: [800, 600]
-  end
+  has_one_attached :image
 
-  validate :image_validation
+  validates :title, presence: true
+  validates :description, presence: true
 
-  private
+  # Add scope for featured projects
+  scope :featured, -> { where(featured: true) }
 
-  def image_validation
-    return unless image.attached?
-
-    # Проверяем content type
-    unless image.content_type.in?(%w[image/png image/jpeg image/jpg])
-      errors.add(:image, 'must be a PNG or JPG')
-    end
-
-    if image.byte_size > 5.megabytes
-      errors.add(:image, 'size must be less than 5MB')
-    end
+  def technologies_array
+    technologies.split(',').map(&:strip) if technologies.present?
   end
 end
