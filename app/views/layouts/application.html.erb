@@ -1,102 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full bg-gray-900">
   <head>
-    <title><%= content_for(:title) || "V3rb4 Cyber Portfolio" %></title>
+    <title><%= content_for(:title) || "V3rb4 Security Research" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="V3rb4 Cyber Security Portfolio - Penetration Testing and Security Research">
+    <meta name="description" content="Security Research and Penetration Testing">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= yield :head %>
-    
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   
-  <body class="h-full bg-white dark:bg-gray-900">
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-sm z-50">
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16">
-        <div class="flex justify-between items-center h-full">
-          <!-- Logo -->
-          <%= link_to root_path, class: "flex items-center space-x-2" do %>
-            <img src="/icon.svg" alt="V3rb4 Logo" class="h-8 w-8">
-            <span class="text-xl font-bold text-gray-900 dark:text-white">V3rb4</span>
+  <body class="h-full text-gray-100">
+    <!-- Minimal Side Navigation -->
+    <nav class="fixed top-0 left-0 h-full w-16 md:w-64 bg-black bg-opacity-50 backdrop-blur-sm">
+      <div class="flex flex-col h-full p-4">
+        <!-- Logo -->
+        <div class="mb-8">
+          <%= link_to root_path, class: "flex items-center space-x-3" do %>
+            <img src="/icon.svg" alt="Logo" class="w-8 h-8">
+            <span class="hidden md:block text-lg font-bold">V3rb4</span>
+          <% end %>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="space-y-6">
+          <%= link_to root_path, class: "flex items-center space-x-3 text-gray-400 hover:text-white transition-colors" do %>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span class="hidden md:block">Home</span>
           <% end %>
 
-          <!-- Navigation -->
-          <div class="hidden md:flex items-center space-x-8">
-            <%= link_to "Home", root_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "About", about_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "Projects", projects_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "Contact", contact_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-          </div>
-
-          <!-- Mobile menu button -->
-          <button type="button" class="md:hidden p-2 text-gray-700 dark:text-gray-300" 
-                  data-action="click->mobile-menu#toggle">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <%= link_to about_path, class: "flex items-center space-x-3 text-gray-400 hover:text-white transition-colors" do %>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
             </svg>
-          </button>
-        </div>
-      </nav>
-    </header>
+            <span class="hidden md:block">About</span>
+          <% end %>
 
-    <!-- Mobile menu -->
-    <div class="hidden md:hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40" data-mobile-menu-target="overlay">
-      <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white dark:bg-gray-900 shadow-xl">
-        <div class="flex flex-col h-full">
-          <div class="flex items-center justify-between h-16 px-4 border-b dark:border-gray-700">
-            <span class="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
-            <button type="button" class="p-2 text-gray-700 dark:text-gray-300" 
-                    data-action="click->mobile-menu#toggle">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-          <div class="flex flex-col space-y-4 px-4 py-6">
-            <%= link_to "Home", root_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "About", about_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "Projects", projects_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-            <%= link_to "Contact", contact_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
-          </div>
+          <%= link_to projects_path, class: "flex items-center space-x-3 text-gray-400 hover:text-white transition-colors" do %>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span class="hidden md:block">Projects</span>
+          <% end %>
+
+          <%= link_to contact_path, class: "flex items-center space-x-3 text-gray-400 hover:text-white transition-colors" do %>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span class="hidden md:block">Contact</span>
+          <% end %>
         </div>
       </div>
-    </div>
+    </nav>
 
-    <!-- Main content -->
-    <main class="pt-16 min-h-screen">
+    <!-- Main Content -->
+    <main class="ml-16 md:ml-64 min-h-screen">
       <%= yield %>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-50 dark:bg-gray-800">
-      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-          <div class="flex items-center space-x-2">
-            <img src="/icon.svg" alt="V3rb4 Logo" class="h-8 w-8">
-            <span class="text-xl font-bold text-gray-900 dark:text-white">V3rb4</span>
-          </div>
-          <div class="flex space-x-6">
-            <a href="https://github.com/yourusername" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-              GitHub
-            </a>
-            <a href="https://linkedin.com/in/yourusername" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-              LinkedIn
-            </a>
-          </div>
-          <div class="text-sm text-gray-500 dark:text-gray-400">
-            © <%= Time.current.year %> V3rb4. All rights reserved.
-          </div>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
