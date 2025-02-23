@@ -1,28 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="h-full">
   <head>
     <title><%= content_for(:title) || "V3rb4 Cyber Portfolio" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="V3rb4 Cyber Security Portfolio - Penetration Testing and Security Research">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  
+  <body class="h-full bg-white dark:bg-gray-900">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-sm z-50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16">
+        <div class="flex justify-between items-center h-full">
+          <!-- Logo -->
+          <%= link_to root_path, class: "flex items-center space-x-2" do %>
+            <img src="/icon.svg" alt="V3rb4 Logo" class="h-8 w-8">
+            <span class="text-xl font-bold text-gray-900 dark:text-white">V3rb4</span>
+          <% end %>
 
-  <body>
-    <%= yield %>
+          <!-- Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <%= link_to "Home", root_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "About", about_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "Projects", projects_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "Contact", contact_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button type="button" class="md:hidden p-2 text-gray-700 dark:text-gray-300" 
+                  data-action="click->mobile-menu#toggle">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40" data-mobile-menu-target="overlay">
+      <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white dark:bg-gray-900 shadow-xl">
+        <div class="flex flex-col h-full">
+          <div class="flex items-center justify-between h-16 px-4 border-b dark:border-gray-700">
+            <span class="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
+            <button type="button" class="p-2 text-gray-700 dark:text-gray-300" 
+                    data-action="click->mobile-menu#toggle">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="flex flex-col space-y-4 px-4 py-6">
+            <%= link_to "Home", root_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "About", about_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "Projects", projects_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+            <%= link_to "Contact", contact_path, class: "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="pt-16 min-h-screen">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          <div class="flex items-center space-x-2">
+            <img src="/icon.svg" alt="V3rb4 Logo" class="h-8 w-8">
+            <span class="text-xl font-bold text-gray-900 dark:text-white">V3rb4</span>
+          </div>
+          <div class="flex space-x-6">
+            <a href="https://github.com/yourusername" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/yourusername" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+              LinkedIn
+            </a>
+          </div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            © <%= Time.current.year %> V3rb4. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
