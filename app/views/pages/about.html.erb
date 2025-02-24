@@ -1,59 +1,76 @@
-<div class="max-w-6xl mx-auto py-16 px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-  
-  <div class="text-left">
-    <h1 class="text-5xl font-bold mb-6 text-gray-100">
-      Passionate About Cybersecurity
-    </h1>
+<div class="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
+  <h1 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">About Me</h1>
 
-    <p class="text-lg leading-relaxed text-gray-300">
-      As a dedicated <span class="font-semibold text-blue-400">penetration tester</span> and cybersecurity enthusiast, I help organizations identify and address security vulnerabilities before they can be exploited.
-    </p>
-
-    <div class="mt-6 flex space-x-4">
-      <a href="mailto:youremail@example.com" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition">
-        📧 Contact Me
-      </a>
-      <a href="#skills" class="border border-blue-500 hover:bg-blue-500 text-blue-500 hover:text-white font-bold py-2 px-4 rounded-lg transition">
-        View My Skills
-      </a>
+  <div class="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-lg">
+    <!-- Profile Section -->
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <%= image_tag "cyber_avatar.png", alt: "My Profile", style: "max-width: 100px; height: auto;", class: "rounded-full mb-4 md:mb-0 md:mr-6 object-cover" %>
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl font-semibold text-white">v3rb4</h2>
+        <p class="text-gray-400">Cybersecurity Specialist & Penetration Tester</p>
+      </div>
     </div>
-  </div>
 
-  <div class="flex justify-center">
-    <img src="<%= asset_path('cyber_avatar.png') %>" alt="Cybersecurity Professional" class="w-72 h-auto rounded-lg shadow-lg">
-  </div>
-
-</div>
-
-<div id="skills" class="max-w-5xl mx-auto mt-12 px-8">
-  <h2 class="text-3xl font-bold text-gray-100 border-b border-blue-500 pb-2 mb-6">
-    Professional Expertise
-  </h2>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
-    <div>
-      <h3 class="text-xl font-bold flex items-center gap-2">
-        🛡️ Ethical Hacking
-      </h3>
-      <p class="text-md">Identifying vulnerabilities through authorized testing.</p>
+    <!-- Professional Summary -->
+    <div class="mt-6">
+      <h3 class="text-xl font-semibold text-white mb-4">Professional Summary</h3>
+      <p class="text-gray-300 leading-relaxed">
+        As a passionate cybersecurity professional with extensive experience in penetration testing and vulnerability assessment, I specialize in identifying and mitigating security risks for organizations. With a strong background in ethical hacking, security tool development, and securing web applications, APIs, and cloud infrastructure, I bring a proactive and innovative approach to protecting digital assets.
+      </p>
     </div>
-    <div>
-      <h3 class="text-xl font-bold flex items-center gap-2">
-        🔍 Web Security
-      </h3>
-      <p class="text-md">Securing web applications and APIs.</p>
+
+    <!-- Skills -->
+    <div class="mt-8">
+      <h3 class="text-xl font-semibold text-white mb-4">Core Skills</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Ethical Hacking</h4>
+          <p class="text-gray-400">Expertise in identifying vulnerabilities through authorized testing and mitigation strategies.</p>
+        </div>
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Web & API Security</h4>
+          <p class="text-gray-400">Securing web applications, APIs, and ensuring robust protection against attacks.</p>
+        </div>
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Security Tools</h4>
+          <p class="text-gray-400">Development of custom security solutions and tools to enhance organizational defenses.</p>
+        </div>
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Cloud Security</h4>
+          <p class="text-gray-400">Securing cloud infrastructure and services to prevent unauthorized access and breaches.</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h3 class="text-xl font-bold flex items-center gap-2">
-        🐍💎 Security Tools
-      </h3>
-      <p class="text-md">Development of custom security solutions.</p>
+
+    <!-- Experience -->
+    <div class="mt-8">
+      <h3 class="text-xl font-semibold text-white mb-4">Professional Experience</h3>
+      <div class="space-y-4">
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Senior Penetration Tester</h4>
+          <p class="text-gray-400">CyberSecure Inc. | 2020 - Present</p>
+          <p class="text-gray-300 mt-2">
+            Conducted over 50 penetration tests for major clients, identifying critical vulnerabilities and implementing defense strategies. Developed custom tools to automate security assessments, reducing testing time by 30%.
+          </p>
+        </div>
+        <div class="bg-gray-700 bg-opacity-50 p-4 rounded-lg">
+          <h4 class="text-lg font-medium text-white">Junior Security Analyst</h4>
+          <p class="text-gray-400">TechGuard Solutions | 2017 - 2020</p>
+          <p class="text-gray-300 mt-2">
+            Assisted in vulnerability assessments and security audits for web and cloud applications, contributing to a 25% improvement in system security posture.
+          </p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h3 class="text-xl font-bold flex items-center gap-2">
-        ☁️ Cloud Security
-      </h3>
-      <p class="text-md">Securing cloud infrastructure and services.</p>
+
+    <!-- Contact Information -->
+    <div class="mt-8">
+      <h3 class="text-xl font-semibold text-white mb-4">Contact Me</h3>
+      <p class="text-gray-300">
+        Email: <a href="mailto:v3rb4@example.com" class="text-blue-400 hover:underline">v3rb4@example.com</a><br>
+        LinkedIn: <a href="https://linkedin.com/in/v3rb4" class="text-blue-400 hover:underline">linkedin.com/in/v3rb4</a><br>
+        GitHub: <a href="https://github.com/v3rb4" class="text-blue-400 hover:underline">github.com/v3rb4</a>
+      </p>
     </div>
   </div>
 </div>
