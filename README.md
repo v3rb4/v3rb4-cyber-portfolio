@@ -1,14 +1,5 @@
 # v3rb4 Cyber Portfolio
-
-🚀 **My personal portfolio website**, featuring:
-- 🔹 Information about me
-- 📌 A structured blog with categories:
-  - CCNA Notes
-  - Cybersecurity
-  - Projects & Lab Work
-  - Tool & Technology Reviews
 - 🛠️ Built with Ruby on Rails
-
 ## 📌 Technologies Used
 - **Backend**: Ruby on Rails
 - **Authentication**: Devise
@@ -24,7 +15,6 @@ bundle install
 rails db:migrate
 rails server
 ```
-
 ## 🚀 Development Roadmap
 - [x] Set up Rails and Devise
 - [x] Configure models and routes
